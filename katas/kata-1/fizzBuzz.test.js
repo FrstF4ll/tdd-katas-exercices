@@ -12,3 +12,7 @@ test('is returning "Fizz" for multiple of 3', () => {
 test('is returning "Buzz" for multiple of 5', () => {
     expect(fizzBuzz(5)).toBe("Buzz")
 });
+
+test('is returning "FizzBuzz" for common multiple of 3 and 5', () => {
+    expect(fizzBuzz(15)).toBe("FizzBuzz")
+})
