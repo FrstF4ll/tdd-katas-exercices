@@ -1,0 +1,1 @@
+export const Add = (number) => number === "" && 0
