@@ -24,3 +24,8 @@ test("Accept custom delimiter", () => {
     expect(Add("//;\n1;2")).toBe(3)
     expect(Add("//x\n5x5")).toBe(10)
 })
+
+test("Throw error on negative numbers", () => {
+    expect(() =>Add("-1,3")).toThrow("-1")
+    expect(() => Add("-3,-4")).toThrow("-3,-4")
+})
