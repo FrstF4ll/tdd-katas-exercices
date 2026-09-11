@@ -30,15 +30,12 @@ const defineDelimiters = (numbers) => {
     if(!matched){
         return  /[,\n]/
     }
-    const escapeRegExp = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const multipleDelimiters = hasMultipleDelimiters(matched[1])
+    const escapeRegExp = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-    if(multipleDelimiters){
-        const escaped = multipleDelimiters.map(escapeRegExp)
-        return new RegExp(escaped.join("|"));
-    }
-
-    return new RegExp(escapeRegExp(matched[1]))
+    return multipleDelimiters
+        ? new RegExp(multipleDelimiters.map(escapeRegExp).join("|"))
+        : new RegExp(escapeRegExp(matched[1]));
 }
 
 export const Add = (numbers) => {
