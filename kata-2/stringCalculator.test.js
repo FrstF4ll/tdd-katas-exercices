@@ -12,5 +12,5 @@ test("Return sum of selected numbers", () =>{
 
 test("Ignore numbers bigger than 1000", () => {
     expect(Add("1, 1000")).toBe(1);
-    expect(Add("1, 1000,2,")).toBe(3);
+    expect(Add("1, 1002,2,")).toBe(3);
 })
