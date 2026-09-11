@@ -3,6 +3,11 @@ const parseUserInput = (delimiter, numbers) => {
     const mapped = numArray.map(Number);
     const isSmallerThanHundred = (number) => number < 1000
     const filtered =  mapped.filter(isSmallerThanHundred)
+    const isSmallerThanZero = (number) => number < 0
+    const hasNegatives = filtered.some(isSmallerThanZero)
+    if(hasNegatives){
+        throw `negatives numbers are not allowed : ${numbers}`
+    }
     return filtered.reduce((acc, curr) => acc + curr,0)
 }
 
