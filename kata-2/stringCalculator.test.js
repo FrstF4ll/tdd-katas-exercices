@@ -23,6 +23,7 @@ test("Ignore numbers bigger than 1000", () => {
 test("Accept custom delimiter", () => {
     expect(Add("//;\n1;2")).toBe(3)
     expect(Add("//x\n5x5")).toBe(10)
+    expect(Add("//xx\n5xx5")).toBe(10)
 })
 
 test("Throw error on negative numbers", () => {
