@@ -10,6 +10,11 @@ test("Return sum of selected numbers", () =>{
     expect(Add(",3")).toBe(3)
 })
 
+test("Handle new lines as separators", () => {
+    expect(Add("1\n2")).toBe(3)
+    expect(Add("2\n2,3")).toBe(7)
+    expect(Add("2,\n6")).toBe(8)
+})
 test("Ignore numbers bigger than 1000", () => {
     expect(Add("1, 1000")).toBe(1);
     expect(Add("1, 1002,2,")).toBe(3);
