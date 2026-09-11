@@ -6,17 +6,14 @@ const parseUserInput = (delimiter, numbers) => {
     return filtered.reduce((acc, curr) => acc + curr,0)
 }
 
-export const Add = (numbers) => {
+const defineDelimiters = (numbers) => {
     const definedPattern = /^\/\/(.+)\n([\s\S]*)$/
     const matched = numbers.match(definedPattern)
-    let separators = /[,\n]/
+    return matched ? matched[1] : /[,\n]/
+}
 
-    if(matched){
-        const delimiter = matched[1]
-        const parsedNumbers = matched[2]
-        return parseUserInput(delimiter, parsedNumbers)
-    } else {
-        return parseUserInput(separators, numbers)
-    }
+export const Add = (numbers) => {
+    const separators = defineDelimiters(numbers)
+    return parseUserInput(separators, numbers)
 }
 
