@@ -1,26 +1,26 @@
 class TennisGame1 {
-    m_score1 = 0;
-    m_score2 = 0;
+    scorePlayer1 = 0;
+    scorePlayer2 = 0;
 
-    constructor(player1Name, player2Name) {
-        this.player1Name = player1Name;
-        this.player2Name = player2Name;
+    constructor(namePlayer1, namePlayer2) {
+        this.namePlayer1 = namePlayer1;
+        this.namePlayer2 = namePlayer2;
     };
 
     wonPoint(playerName) {
-        if (playerName === "player1")
-            this.m_score1 += 1;
+        if (playerName === this.namePlayer1)
+            this.scorePlayer1 += 1;
         else
-            this.m_score2 += 1;
+            this.scorePlayer2 += 1;
     };
 
 
 
     getScore() {
         let scoreLabel = "";
-        let score = 0;
-        if (this.m_score1 === this.m_score2) {
-            switch (this.m_score1) {
+        let currentScore = 0;
+        if (this.scorePlayer1 === this.scorePlayer2) {
+            switch (this.scorePlayer1) {
                 case 0:
                     scoreLabel = "Love-All";
                     break;
@@ -34,18 +34,18 @@ class TennisGame1 {
                     scoreLabel = "Deuce";
                     break;
             }
-        } else if (this.m_score1 >= 4 || this.m_score2 >= 4) {
-        const scoreDiff = Math.abs(this.m_score1 - this.m_score2);
-        const leader = this.m_score1 > this.m_score2 ? this.player1Name : this.player2Name;
+        } else if (this.scorePlayer1 >= 4 || this.scorePlayer2 >= 4) {
+        const scoreDiff = Math.abs(this.scorePlayer1 - this.scorePlayer2);
+        const leader = this.scorePlayer1 > this.scorePlayer2 ? this.namePlayer1 : this.namePlayer2;
         scoreLabel = scoreDiff === 1 ? `Advantage ${leader}` : `Win for ${leader}`;
         } else {
             for (let i = 1; i < 3; i++) {
-                if (i === 1) score = this.m_score1;
+                if (i === 1) currentScore = this.scorePlayer1;
                 else {
                     scoreLabel += "-";
-                    score = this.m_score2;
+                    currentScore = this.scorePlayer2;
                 }
-                switch (score) {
+                switch (currentScore) {
                     case 0:
                         scoreLabel += "Love";
                         break;
