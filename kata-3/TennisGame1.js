@@ -35,11 +35,9 @@ class TennisGame1 {
                     break;
             }
         } else if (this.m_score1 >= 4 || this.m_score2 >= 4) {
-            const minusResult = this.m_score1 - this.m_score2;
-            if (minusResult === 1) score = "Advantage player1";
-            else if (minusResult === -1) score = "Advantage player2";
-            else if (minusResult >= 2) score = "Win for player1";
-            else score = "Win for player2";
+        const scoreDiff = Math.abs(this.m_score1 - this.m_score2);
+        const leader = this.m_score1 > this.m_score2 ? this.player1Name : this.player2Name;
+        score = scoreDiff === 1 ? `Advantage ${leader}` : `Win for ${leader}`;
         } else {
             for (let i = 1; i < 3; i++) {
                 if (i === 1) tempScore = this.m_score1;
