@@ -16,15 +16,38 @@ const parseUserInput = (delimiter, numbers) => {
     return filtered
 }
 
+const hasMultipleDelimiters = (delimitersConfig) => {
+    const multipleDelimiterPattern = /\[([^\]]+)\]/g
+    const matchMultipleDelimiters = delimitersConfig.match(multipleDelimiterPattern)
+    if(matchMultipleDelimiters){
+        return matchMultipleDelimiters.map((delimiter) => delimiter.slice(1, -1))
+    }
+}
+
 const defineDelimiters = (numbers) => {
     const definedPattern = /^\/\/(.+)\n([\s\S]*)$/
     const matched = numbers.match(definedPattern)
-    return matched ? matched[1] : /[,\n]/
+    if(!matched){
+        return  /[,\n]/
+    }
+    const escapeRegExp = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const multipleDelimiters = hasMultipleDelimiters(matched[1])
+
+    if(multipleDelimiters){
+        const escaped = multipleDelimiters.map(escapeRegExp)
+        return new RegExp(escaped.join("|"));
+    }
+
+    return new RegExp(escapeRegExp(matched[1]))
 }
 
 export const Add = (numbers) => {
+    const definedPattern = /^\/\/(.+)\n([\s\S]*)$/;
+    const matched = numbers.match(definedPattern);
+    const numbersOnly = matched ? matched[2] : numbers;
+
     const separators = defineDelimiters(numbers)
-    const parsed = parseUserInput(separators, numbers)
+    const parsed = parseUserInput(separators, numbersOnly)
     return parsed.reduce((acc, curr) => acc + curr,0)
 }
 
