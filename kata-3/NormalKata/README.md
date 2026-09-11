@@ -1,6 +1,6 @@
 # Tennis in JavaScript
 
-For main description, see [top level README](../README.md).
+For main description, see [top level README](../../README.md).
 
 Tests are available to be run both with node.js and in the browser.
 For node, simply call
