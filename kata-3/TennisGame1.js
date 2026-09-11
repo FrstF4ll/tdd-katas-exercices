@@ -14,54 +14,43 @@ class TennisGame1 {
             this.scorePlayer2 += 1;
     };
 
-
+    getScoreLabel(currentScore){
+        let scoreLabel = ""
+        switch (currentScore) {
+            case 0:
+                scoreLabel += "Love";
+                break;
+            case 1:
+                scoreLabel += "Fifteen";
+                break;
+            case 2:
+                scoreLabel += "Thirty";
+                break;
+            case 3:
+                scoreLabel += "Forty"
+                break;
+        }
+        return scoreLabel
+    }
 
     getScore() {
-        let scoreLabel = "";
-        let currentScore = 0;
+        const scoreLabel1 = this.getScoreLabel(this.scorePlayer1);
+        const scoreLabel2 = this.getScoreLabel(this.scorePlayer2);
+        let fullScoreLabel = `${scoreLabel1}-${scoreLabel2}`
+
         if (this.scorePlayer1 === this.scorePlayer2) {
-            switch (this.scorePlayer1) {
-                case 0:
-                    scoreLabel = "Love-All";
-                    break;
-                case 1:
-                    scoreLabel = "Fifteen-All";
-                    break;
-                case 2:
-                    scoreLabel = "Thirty-All";
-                    break;
-                default:
-                    scoreLabel = "Deuce";
-                    break;
+            if (this.scorePlayer1 >= 3) {
+                fullScoreLabel = "Deuce"
+            } else {
+            fullScoreLabel = `${scoreLabel1}-All`
             }
         } else if (this.scorePlayer1 >= 4 || this.scorePlayer2 >= 4) {
         const scoreDiff = Math.abs(this.scorePlayer1 - this.scorePlayer2);
         const leader = this.scorePlayer1 > this.scorePlayer2 ? this.namePlayer1 : this.namePlayer2;
-        scoreLabel = scoreDiff === 1 ? `Advantage ${leader}` : `Win for ${leader}`;
-        } else {
-            for (let i = 1; i < 3; i++) {
-                if (i === 1) currentScore = this.scorePlayer1;
-                else {
-                    scoreLabel += "-";
-                    currentScore = this.scorePlayer2;
-                }
-                switch (currentScore) {
-                    case 0:
-                        scoreLabel += "Love";
-                        break;
-                    case 1:
-                        scoreLabel += "Fifteen";
-                        break;
-                    case 2:
-                        scoreLabel += "Thirty";
-                        break;
-                    case 3:
-                        scoreLabel += "Forty";
-                        break;
-                }
-            }
+        fullScoreLabel = scoreDiff === 1 ? `Advantage ${leader}` : `Win for ${leader}`;
         }
-        return scoreLabel;
+
+        return fullScoreLabel;
     };
 }
 if (typeof window === "undefined") {
