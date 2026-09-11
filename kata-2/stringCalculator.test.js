@@ -30,3 +30,8 @@ test("Throw error on negative numbers", () => {
     expect(() =>Add("-1,3")).toThrow("-1")
     expect(() => Add("-3,-4")).toThrow("-3,-4")
 })
+
+test("Accept multiple custom delimiters", () => {
+    expect(Add("//;-\n1;2-3")).toBe(6)
+    expect(Add("//xa\n5x5a2")).toBe(12)
+})
