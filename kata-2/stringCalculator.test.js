@@ -32,6 +32,6 @@ test("Throw error on negative numbers", () => {
 })
 
 test("Accept multiple custom delimiters", () => {
-    expect(Add("//;-\n1;2-3")).toBe(6)
-    expect(Add("//xa\n5x5a2")).toBe(12)
+    expect(Add("//[;][-]\n1;2-3")).toBe(6)
+    expect(Add("//[x][a]\n5x5a2")).toBe(12)
 })
