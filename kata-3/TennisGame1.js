@@ -17,51 +17,51 @@ class TennisGame1 {
 
 
     getScore() {
-        let score = "";
-        let tempScore = 0;
+        let scoreLabel = "";
+        let score = 0;
         if (this.m_score1 === this.m_score2) {
             switch (this.m_score1) {
                 case 0:
-                    score = "Love-All";
+                    scoreLabel = "Love-All";
                     break;
                 case 1:
-                    score = "Fifteen-All";
+                    scoreLabel = "Fifteen-All";
                     break;
                 case 2:
-                    score = "Thirty-All";
+                    scoreLabel = "Thirty-All";
                     break;
                 default:
-                    score = "Deuce";
+                    scoreLabel = "Deuce";
                     break;
             }
         } else if (this.m_score1 >= 4 || this.m_score2 >= 4) {
         const scoreDiff = Math.abs(this.m_score1 - this.m_score2);
         const leader = this.m_score1 > this.m_score2 ? this.player1Name : this.player2Name;
-        score = scoreDiff === 1 ? `Advantage ${leader}` : `Win for ${leader}`;
+        scoreLabel = scoreDiff === 1 ? `Advantage ${leader}` : `Win for ${leader}`;
         } else {
             for (let i = 1; i < 3; i++) {
-                if (i === 1) tempScore = this.m_score1;
+                if (i === 1) score = this.m_score1;
                 else {
-                    score += "-";
-                    tempScore = this.m_score2;
+                    scoreLabel += "-";
+                    score = this.m_score2;
                 }
-                switch (tempScore) {
+                switch (score) {
                     case 0:
-                        score += "Love";
+                        scoreLabel += "Love";
                         break;
                     case 1:
-                        score += "Fifteen";
+                        scoreLabel += "Fifteen";
                         break;
                     case 2:
-                        score += "Thirty";
+                        scoreLabel += "Thirty";
                         break;
                     case 3:
-                        score += "Forty";
+                        scoreLabel += "Forty";
                         break;
                 }
             }
         }
-        return score;
+        return scoreLabel;
     };
 }
 if (typeof window === "undefined") {
