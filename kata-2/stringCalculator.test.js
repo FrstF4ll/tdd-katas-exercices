@@ -19,3 +19,8 @@ test("Ignore numbers bigger than 1000", () => {
     expect(Add("1, 1000")).toBe(1);
     expect(Add("1, 1002,2,")).toBe(3);
 })
+
+test("Accept custom delimiter", () => {
+    expect(Add("//;\n1;2")).toBe(3)
+    expect(Add("//x\n5x5")).toBe(10)
+})
