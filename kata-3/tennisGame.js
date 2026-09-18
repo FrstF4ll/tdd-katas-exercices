@@ -30,10 +30,14 @@ export function getScoreLabel(score) {
 
 export function tennisGame(player1Score, player2Score){
     const isPlayerWinning = winningPlayer(player1Score, player2Score)
+
     if(Math.max(player1Score, player2Score) < 4){
         const players = [player1Score, player2Score]
         return players.map((player) => getScoreLabel(player)).join('-')
     } else {
+        if(player1Score === player2Score){
+            return "Deuce"
+        }
         return isPlayerWinning ? winningPlayer(player1Score, player2Score) : advantagedPlayer(player1Score, player2Score)
     }
 }
