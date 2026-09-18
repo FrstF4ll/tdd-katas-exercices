@@ -45,7 +45,7 @@ describe("Display same score based label", () => {
         [1,1, "Fifteen-Fifteen"],
         [4,4, "Deuce"],
         [5,5, "Deuce"]
-    ])("%(i, %i) -> %s", (player_1, player_2, label) => {
+    ])("(%i, %i) -> %s", (player_1, player_2, label) => {
         expect(tennisGame(player_1, player_2)).toBe(label)
     })
 })
