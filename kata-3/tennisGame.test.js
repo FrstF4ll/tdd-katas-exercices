@@ -39,12 +39,19 @@ describe("Display score diff based labels", () => {
     })
 })
 
-describe("Display same score based label", () => {
+describe("Display tied score above 3 labels", () => {
     test.each([
-        [0,0, "Love-Love"],
-        [1,1, "Fifteen-Fifteen"],
         [4,4, "Deuce"],
         [5,5, "Deuce"]
+    ])("(%i, %i) -> %s", (player_1, player_2, label) => {
+        expect(tennisGame(player_1, player_2)).toBe(label)
+    })
+})
+
+describe("Display tied score under 3 labels", ()=> {
+    test.each([
+        [0,0, "Love-All"],
+        [3,3, "Forty-All"]
     ])("(%i, %i) -> %s", (player_1, player_2, label) => {
         expect(tennisGame(player_1, player_2)).toBe(label)
     })
