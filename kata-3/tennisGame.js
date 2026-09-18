@@ -28,20 +28,22 @@ export function getScoreLabel(score) {
     return label
 }
 
+const defineTieLabel = (player1Score, player2Score) =>
+    Math.max(player1Score, player2Score) < 4
+        ?`${getScoreLabel(player1Score)}-All`
+        : "Deuce"
+
+
 export function tennisGame(player1Score, player2Score){
     const isPlayerWinning = winningPlayer(player1Score, player2Score)
+    if(player1Score === player2Score){
+        return defineTieLabel(player1Score, player2Score)
+    }
 
     if(Math.max(player1Score, player2Score) < 4){
         const players = [player1Score, player2Score]
-        if(player1Score === player2Score){
-            return `${getScoreLabel(players[0])}-All`
-        }
-
         return players.map((player) => getScoreLabel(player)).join('-')
     } else {
-        if(player1Score === player2Score){
-            return "Deuce"
-        }
         return isPlayerWinning ? winningPlayer(player1Score, player2Score) : advantagedPlayer(player1Score, player2Score)
     }
 }
