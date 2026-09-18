@@ -30,18 +30,19 @@ const defineDelimiters = (numbers: string) => {
     if(!matched){
         return  /[,\n]/
     }
-    const multipleDelimiters = hasMultipleDelimiters(matched[1])
+    const delimiterConfig = matched[1]!
+    const multipleDelimiters = hasMultipleDelimiters(delimiterConfig)
     const escapeRegExp = (string: string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
     return multipleDelimiters
         ? new RegExp(multipleDelimiters.map(escapeRegExp).join("|"))
-        : new RegExp(escapeRegExp(matched[1]));
+        : new RegExp(escapeRegExp(delimiterConfig));
 }
 
 export const Add = (numbers: string) => {
     const definedPattern = /^\/\/(.+)\n([\s\S]*)$/;
     const matched = numbers.match(definedPattern);
-    const numbersOnly = matched ? matched[2] : numbers;
+    const numbersOnly = matched ? matched[2]! : numbers;
 
     const separators = defineDelimiters(numbers)
     const parsed = parseUserInput(separators, numbersOnly)
