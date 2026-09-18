@@ -1,6 +1,6 @@
-export const fizzBuzz = (number) => {
-    const fizz = "Fizz"
-    const buzz = "Buzz"
+export const fizzBuzz = (number:number):string | number => {
+    const fizz:string = "Fizz"
+    const buzz:string = "Buzz"
 
     if(number % 15 === 0) return fizz+buzz;
     if(number % 3 === 0) return fizz;

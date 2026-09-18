@@ -1,12 +1,12 @@
-function winningPlayer(player1Score, player2Score){
+function winningPlayer(player1Score: number, player2Score: number){
     const scoreDiff = Math.abs(player1Score - player2Score)
     if(scoreDiff >= 2){
         return player1Score > player2Score ? "Win for player 1" : "Win for player 2"
     }
 }
-const advantagedPlayer = (player1Score, player2Score) => player1Score > player2Score ? "Advantage for player 1" : "Advantage for player 2"
+const advantagedPlayer = (player1Score: number, player2Score: number) => player1Score > player2Score ? "Advantage for player 1" : "Advantage for player 2"
 
-export function getScoreLabel(score) {
+export function getScoreLabel(score: number) {
     let label = ""
     switch(score){
         case 0:
@@ -28,13 +28,13 @@ export function getScoreLabel(score) {
     return label
 }
 
-const defineTieLabel = (player1Score, player2Score) =>
+const defineTieLabel = (player1Score: number, player2Score: number) =>
     Math.max(player1Score, player2Score) < 4
         ?`${getScoreLabel(player1Score)}-All`
         : "Deuce"
 
 
-export function tennisGame(player1Score, player2Score){
+export function tennisGame(player1Score: number, player2Score: number){
     const isPlayerWinning = winningPlayer(player1Score, player2Score)
     if(player1Score === player2Score){
         return defineTieLabel(player1Score, player2Score)
