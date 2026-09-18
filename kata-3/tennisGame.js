@@ -1,9 +1,7 @@
 function winningPlayer(player1Score, player2Score){
-    const scoreDiff = player1Score - player2Score
-    if(player1Score >= 4 && scoreDiff >= 2){
-        return "Win for player 1"
-    } else if(player2Score >= 4 && scoreDiff <= -2){
-        return "Win for player 2"
+    const scoreDiff = Math.abs(player1Score - player2Score)
+    if(scoreDiff >= 2){
+        return player1Score > player2Score ? "Win for player 1" : "Win for player 2"
     }
 }
 const advantagedPlayer = (player1Score, player2Score) => player1Score > player2Score ? "Advantage for player 1" : "Advantage for player 2"
@@ -32,10 +30,9 @@ export function getScoreLabel(score) {
 
 export function tennisGame(player1Score, player2Score){
     const isPlayerWinning = winningPlayer(player1Score, player2Score)
-    if(player1Score < 4 && player2Score < 4){
-        const player1Label = getScoreLabel(player1Score)
-        const player2Label = getScoreLabel(player2Score)
-        return `${player1Label}-${player2Label}`
+    if(Math.max(player1Score, player2Score) < 4){
+        const players = [player1Score, player2Score]
+        return players.map((player) => getScoreLabel(player)).join('-')
     } else {
         return isPlayerWinning ? winningPlayer(player1Score, player2Score) : advantagedPlayer(player1Score, player2Score)
     }
