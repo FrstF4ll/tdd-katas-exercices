@@ -1,13 +1,13 @@
 import {test, expect, describe } from "vitest";
 import {tennisGame, getScoreLabel} from "./tennisGame";
-test("Display winning player", () => {
+test("Display which player has won", () => {
     expect(tennisGame(4, 0)).toBe("Win for player 1")
     expect(tennisGame(0, 4)).toBe("Win for player 2")
     expect(tennisGame(6, 4)).toBe("Win for player 1")
     expect(tennisGame(4, 6)).toBe("Win for player 2")
 })
 
-test("Display advantaged player", () => {
+test("Display has the advantage", () => {
     const advantagePlayer1 = "Advantage for player 1"
     const advantagePlayer2 = "Advantage for player 2"
 
@@ -17,7 +17,7 @@ test("Display advantaged player", () => {
     expect(tennisGame(5, 6)).toBe(advantagePlayer2)
 })
 
-describe("Map score to label", () => {
+describe("Map score to labels", () => {
     test.each([
         [0, "Love"],
         [1, "Fifteen"],
@@ -28,7 +28,7 @@ describe("Map score to label", () => {
     })
 })
 
-describe("Display score diff based labels", () => {
+describe("Display label based on mapping", () => {
     test.each([
         [1, 0, "Fifteen-Love"],
         [0, 2, "Love-Thirty"],
@@ -39,7 +39,7 @@ describe("Display score diff based labels", () => {
     })
 })
 
-describe("Display tied score above 3 labels", () => {
+describe("Manage tie case for score above 3", () => {
     test.each([
         [4,4, "Deuce"],
         [5,5, "Deuce"]
@@ -48,7 +48,7 @@ describe("Display tied score above 3 labels", () => {
     })
 })
 
-describe("Display tied score under 3 labels", ()=> {
+describe("Manage tie case for score under 4", ()=> {
     test.each([
         [0,0, "Love-All"],
         [3,3, "Forty-All"]
