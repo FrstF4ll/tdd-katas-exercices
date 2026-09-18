@@ -1,5 +1,5 @@
 import {test, expect, describe } from "vitest";
-import {tennisGame} from "./tennisGame";
+import {tennisGame, getScoreLabel} from "./tennisGame";
 test("Display winning player", () => {
     expect(tennisGame(4, 0)).toBe("Win for player 1")
     expect(tennisGame(0, 4)).toBe("Win for player 2")
