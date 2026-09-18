@@ -1,8 +1,18 @@
-import {test, expect} from "vitest";
+import {test, expect, } from "vitest";
 import {tennisGame} from "./tennisGame";
-test("Win conditions are correctly defined", () => {
+test("Display winning player", () => {
     expect(tennisGame(4, 0)).toBe("Win for player 1")
     expect(tennisGame(0, 4)).toBe("Win for player 2")
     expect(tennisGame(6, 4)).toBe("Win for player 1")
     expect(tennisGame(4, 6)).toBe("Win for player 2")
+})
+
+test("Display advantaged player", () => {
+    const advantagePlayer1 = "Advantage for player 1"
+    const advantagePlayer2 = "Advantage for player 2"
+
+    expect(tennisGame(4, 3)).toBe(advantagePlayer1)
+    expect(tennisGame(3, 4)).toBe(advantagePlayer2)
+    expect(tennisGame(6,5 )).toBe(advantagePlayer1)
+    expect(tennisGame(5, 6)).toBe(advantagePlayer2)
 })
