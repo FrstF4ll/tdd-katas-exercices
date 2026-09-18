@@ -6,6 +6,11 @@ function winningPlayer(player1Score, player2Score){
         return "Win for player 2"
     }
 }
+const advantagedPlayer = (player1Score, player2Score) => player1Score > player2Score ? "Advantage for player 1" : "Advantage for player 2"
+
+
 export function tennisGame(player1Score, player2Score){
-    return winningPlayer(player1Score, player2Score)
+    const isPlayerWinning = winningPlayer(player1Score, player2Score)
+    return isPlayerWinning ? winningPlayer(player1Score, player2Score) : advantagedPlayer(player1Score, player2Score)
+
 }
